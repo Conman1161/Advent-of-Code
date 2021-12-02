@@ -16,6 +16,9 @@ for (let i = 0; i < input.length; i++) {
 
 console.log(floor);
 
+console.log(`\n--- PART 1 END   ---`);
+console.log(`--- PART 2 START --- \n`);
+
 //part 2
 floor = 0;
 
