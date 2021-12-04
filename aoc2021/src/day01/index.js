@@ -47,7 +47,7 @@ run({
       240
       269
       260
-      263`, expected: "7"
+      263`, expected: 7
       },
     ],
     solution: part1,
@@ -64,7 +64,7 @@ run({
       240
       269
       260
-      263`, expected: "618"
+      263`, expected: 5
       },
     ],
     solution: part2,
