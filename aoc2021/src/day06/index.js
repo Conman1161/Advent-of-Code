@@ -7,67 +7,76 @@ const __dirname = path.dirname(__filename);
 const inputFilePath = `${__dirname}\\input.txt`;
 const parseInput = (rawInput) => rawInput.split(',');
 
-// TODO: GET THIS EXPLAINED AT HOC
-// https://topaz.github.io/paste/#XQAAAQDoBAAAAAAAAAAxm8oZxjYXows3V67OFtTdE1VwEUwcUm0RsTsdZFLSszFRh7rxx94tYDRq62V4soq3m0HjhMcwM9yO/ACGqq+uYoMTS7VWE1vPEaOB+w3G1vsyN4hI75EipF8VrRsknk9JarcabO9sAEFRRozxpjwv5OTILggx+PSedyuPcuZF9v6hFvj6P9OysiIcfGci0TSmS/tjONKC3b43x6WYqhpBLnb05B9yIImyoFNrYS1KXixgUf5HXelIswHxOvNAVH4OV8JG3sEsjEnWb5DDGOjaJLoM9FJPS5XpPhayZn5ERzsyO6wlVEetN8nAwdtYLO+Q63UotS4EjS5VGGKHNe60dhqt2vUuDDHClS4nQesDuSr8KdPoDrG4bHrpezxspdUthkmAXO3rmcUcRdg7EOHaChjUn7Zooc01vAxqOzZ6Zu8fN0q8SgDqhhk7PrhrcrZ+8vLU6+nyafbugWGsOjy1Yh2Jqp4bPb6i6wq5QhB4fLnQX4sfASgUtL1F84H+ZsEWhwl0oQVkEoj4mR0X/YyfSomS7iaTUsff9vy9uHq5d6mg27uHBpWopDecL2DEEk5xJO/77UqlEmsBwnPpH/F/hOD4YwcfXlTaQze1Y96XNpNN+NzKB5oap/nXzxGU8lg+DqbUrsAAFF4/zONU8VC9rqse9bG/pEZ3ypmOTuzNuR762Ac6G4yj78+cKMFacryPLYl7ut6Dlf7wW/I=
-
 const part1 = (rawInput) => {
   const input = parseInput(rawInput);
   let desiredDays = 80;
-  let fishTimers = [...input].map(Number);
+  let fishTimers = [...input].map(Number); // convert input to array of Numbers
   let fishCount = {};
   fishTimers.forEach(timer => {
+    /*
+    Take every timer from input and put it into fishCount as a key:value pair
+    This is to make the cycling smaller so processing is faster than an array of all fishes at once
+    */
     if (fishCount[timer] === undefined) fishCount[timer] = 0;
     fishCount[timer] += 1;
   });
 
   for (let i = 0; i < desiredDays; i++) {
     let newFishCount = {};
-    for (let fishIndex in fishCount) {
-      fishIndex = parseInt(fishIndex);
-      let currentFish = fishCount[fishIndex];
-      if (fishIndex > 0) {
-        if (newFishCount[fishIndex - 1] === undefined) newFishCount[fishIndex - 1] = 0;
-        newFishCount[fishIndex - 1] += currentFish;
-      } else {
+    for (let j = 0; j < Object.keys(fishCount).length; j++) { // for each timer
+      let currentFishTimer = parseInt(Object.keys(fishCount)[j]); // get the current timer value
+      let currentTimerCount = fishCount[currentFishTimer]; // get the amount of fish in that timer value
+      if (currentFishTimer > 0) { // if fish has time left on timers
+        // if timer-1 doesn't exist
+        if (newFishCount[currentFishTimer - 1] === undefined) newFishCount[currentFishTimer - 1] = 0;
+        newFishCount[currentFishTimer - 1] += currentTimerCount; // move current timer(s) down 1
+      } else { // timer needs to "turn over"
+        // if timer hasn't been created yet
         if (newFishCount[6] === undefined) newFishCount[6] = 0;
         if (newFishCount[8] === undefined) newFishCount[8] = 0;
-        newFishCount[6] += currentFish;
-        newFishCount[8] += currentFish;
+        newFishCount[6] += currentTimerCount; // add pre-duped fish
+        newFishCount[8] += currentTimerCount; // add duped-fish
       }
     };
     fishCount = newFishCount;
   };
-  return Object.values(fishCount).reduce((a, b) => a + b, 0);;
+  return Object.values(fishCount).reduce((a, b) => a + b, 0);
 };
 
 const part2 = (rawInput) => {
   const input = parseInput(rawInput);
   let desiredDays = 256;
-  let fishTimers = [...input].map(Number);
+  let fishTimers = [...input].map(Number); // convert input to array of Numbers
   let fishCount = {};
   fishTimers.forEach(timer => {
+    /*
+    Take every timer from input and put it into fishCount as a key:value pair
+    This is to make the cycling smaller so processing is faster than an array of all fishes at once
+    */
     if (fishCount[timer] === undefined) fishCount[timer] = 0;
     fishCount[timer] += 1;
   });
 
   for (let i = 0; i < desiredDays; i++) {
     let newFishCount = {};
-    for (let fishIndex in fishCount) {
-      fishIndex = parseInt(fishIndex);
-      let currentFish = fishCount[fishIndex];
-      if (fishIndex > 0) {
-        if (newFishCount[fishIndex - 1] === undefined) newFishCount[fishIndex - 1] = 0;
-        newFishCount[fishIndex - 1] += currentFish;
-      } else {
+    for (let j = 0; j < Object.keys(fishCount).length; j++) { // for each timer
+      let currentFishTimer = parseInt(Object.keys(fishCount)[j]); // get the current timer value
+      let currentTimerCount = fishCount[currentFishTimer]; // get the amount of fish in that timer value
+      if (currentFishTimer > 0) { // if fish has time left on timers
+        // if timer-1 doesn't exist
+        if (newFishCount[currentFishTimer - 1] === undefined) newFishCount[currentFishTimer - 1] = 0;
+        newFishCount[currentFishTimer - 1] += currentTimerCount; // move current timer(s) down 1
+      } else { // timer needs to "turn over"
+        // if timer hasn't been created yet
         if (newFishCount[6] === undefined) newFishCount[6] = 0;
         if (newFishCount[8] === undefined) newFishCount[8] = 0;
-        newFishCount[6] += currentFish;
-        newFishCount[8] += currentFish;
+        newFishCount[6] += currentTimerCount; // add pre-duped fish
+        newFishCount[8] += currentTimerCount; // add duped-fish
       }
     };
     fishCount = newFishCount;
   };
-  return Object.values(fishCount).reduce((a, b) => a + b, 0);;
+  return Object.values(fishCount).reduce((a, b) => a + b, 0);
 }
 run({
   part1: {
