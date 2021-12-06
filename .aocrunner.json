@@ -20,31 +20,31 @@
     {
       "part1": {
         "solved": false,
-        "result": "1636725",
+        "result": "1588178",
         "attempts": [],
-        "time": 0.64
+        "time": 1.22
       },
       "part2": {
         "solved": false,
-        "result": "1872757425",
+        "result": "3783758",
         "attempts": [],
-        "time": 0.56
+        "time": 221223.56
       }
     },
     {
       "part1": {
         "solved": false,
-        "result": "2498354",
+        "result": "2592",
         "attempts": [
           "3349"
         ],
-        "time": 0.84
+        "time": 28469.37
       },
       "part2": {
         "solved": false,
-        "result": "407784",
+        "result": null,
         "attempts": [],
-        "time": 1.21
+        "time": null
       }
     },
     {
