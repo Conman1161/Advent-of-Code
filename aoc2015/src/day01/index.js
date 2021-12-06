@@ -42,13 +42,22 @@ const part2 = (rawInput) => {
 run({
   part1: {
     tests: [
-      // { input: ``, expected: "" }, no example provided
+      { input: `(())`, expected: 0 },
+      { input: `()()`, expected: 0 },
+      { input: `(((`, expected: 3 },
+      { input: `(()(()(`, expected: 3 },
+      { input: `))(((((`, expected: 3 },
+      { input: `())`, expected: -1 },
+      { input: `))(`, expected: -1 },
+      { input: `)))`, expected: -3 },
+      { input: `)())())`, expected: -3 },
     ],
     solution: part1,
   },
   part2: {
     tests: [
-      // { input: ``, expected: "" }, 
+      { input: `)`, expected: 1 },
+      { input: `()())`, expected: 5 },
     ],
     solution: part2,
   },
