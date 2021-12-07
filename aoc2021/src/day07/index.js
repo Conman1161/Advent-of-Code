@@ -25,6 +25,7 @@ const part2 = (rawInput) => {
   let inputCopy = [...input].sort((a, b) => a - b, 0);
   /**
   //!Average rounded up - needs to be 5 in test, 465 in prod???
+  //!Should be Triangle Numbers
   */
   let bestPosition = Math.ceil(inputCopy.reduce((a, b) => a + b, 0) / inputCopy.length) - 1;
 
