@@ -120,9 +120,9 @@
     {
       "part1": {
         "solved": false,
-        "result": null,
+        "result": "554",
         "attempts": [],
-        "time": null
+        "time": 2.05
       },
       "part2": {
         "solved": false,
