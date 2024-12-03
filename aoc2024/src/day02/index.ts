@@ -54,9 +54,19 @@ const part1 = (rawInput: string) => {
 };
 
 const part2 = (rawInput: string) => {
-  const input = parseInput(rawInput);
-
-  return;
+  const input = parseInput(rawInput).split('\n');
+  let safeCount = 0;
+  for(let i = 0; i < input.length; i++){
+    let originalReport = input[i].split(' ');
+    for(let testDigit = 0; testDigit < originalReport.length; testDigit++){
+      let modifiedReport = removeElementFromArray(originalReport, testDigit);
+      if(checkIfSafe(modifiedReport)){
+        safeCount+=1;
+        break;
+      }
+    }
+  }
+  return safeCount;
 };
 
 run({
@@ -91,3 +101,45 @@ run({
   trimTestInputs: true,
   onlyTests: false,
 });
+
+function checkIfSafe(inputArray:string[]){
+  let ascending, descending;
+  ascending = descending = false;
+
+  for(let i = 0; i < inputArray.length-1; i++){
+    let currentDigit = Number(inputArray[i]);
+    let nextDigit = Number(inputArray[i+1]);
+    let digitDiff = Math.abs(currentDigit-nextDigit);
+
+    if (digitDiff == 0 || digitDiff > 3){
+      return false;
+    }
+    if (currentDigit < nextDigit){
+      ascending = true;
+    } else{
+      descending = true;
+    }
+  }
+
+  if (ascending && descending){
+    return false;
+  }
+
+  return true;
+}
+
+function removeElementFromArray(array: any[], index: number){
+  let newArray = [];
+  let popLimiter = false;
+  for(let i = 0; i < array.length; i++){
+    if(i == index){
+      if(popLimiter){
+        newArray.push(array[i]);
+      }
+      popLimiter=true;
+      continue;
+    }
+    newArray.push(array[i]);
+  }
+  return newArray;
+}

@@ -25,13 +25,22 @@
           "595",
           "596"
         ],
-        "time": 1.1094
+        "time": 1.1128
       },
       "part2": {
-        "solved": false,
-        "result": null,
-        "attempts": [],
-        "time": null
+        "solved": true,
+        "result": "689",
+        "attempts": [
+          "683",
+          "676",
+          "675",
+          "771",
+          "826",
+          "733",
+          "781",
+          "686"
+        ],
+        "time": 2.356
       }
     },
     {
