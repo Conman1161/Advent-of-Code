@@ -12,7 +12,7 @@
          "skipFiles": [
             "<node_internals>/**"
          ],
-         "program": "${workspaceFolder}\\aoc2024\\src\\day02\\index.ts",
+         "program": "${workspaceFolder}\\aoc2024\\src\\day03\\index.ts",
          "outFiles": [
             "${workspaceFolder}/**/*.js"
          ]
